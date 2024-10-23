@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_blue">
+ 
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent" 
+        app:layout_constraintStart_toStartOf="parent" 
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/round_btn"
+            android:src="@drawable/ic_back_arrow"
+            android:scaleType="centerInside"
+            android:layout_gravity="start"
+            />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end" 
+            android:src="@drawable/gzr_logo" />
+    </LinearLayout>
+
+<LinearLayout
+        android:id="@+id/content_layout"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/logintextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="LOGIN"
+        android:textColor="@color/white"
+        android:textSize="50sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="One step to a better home!"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:fontFamily="@font/raleway"
+        android:textStyle="italic"
+        android:layout_gravity="center_horizontal"/>
+
+    <!-- Email Field with Border -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/raleway"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_text"
+            android:hint="Account Email Address"
+            android:fontFamily="@font/raleway"
+            android:background="@drawable/round_edit_txt"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Password Field with Border -->
+    <LinearLayout
+        android:id="@+id/pw_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:fontFamily="@font/raleway"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Account Password"
+            android:inputType="textPassword"
+            android:fontFamily="@font/raleway"
+            android:textColor="@color/grey_text"
+            android:background="@drawable/round_edit_txt"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <!-- Log In Button centered at the bottom -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login"
+        android:layout_width="130dp"
+        android:layout_height="44dp"
+        android:background="@drawable/round_btn"
+        android:textColor="@color/black"
+        android:text="sign-in"
+        android:textSize="15sp"
+        android:fontFamily="@font/raleway"
+        android:layout_marginTop="20dp"
+         />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

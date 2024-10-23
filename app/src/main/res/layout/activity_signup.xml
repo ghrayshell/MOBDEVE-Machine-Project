@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_blue">
+
+    <!--  header  -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/round_btn"
+            android:src="@drawable/ic_back_arrow"
+            android:scaleType="centerInside"
+            android:layout_gravity="start" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="end"
+            android:src="@drawable/gzr_logo" />
+    </LinearLayout>
+
+    <!--  sign up & text fields  -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/logintextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/raleway_semibold"
+            android:text="SIGN-UP"
+            android:textColor="@color/white"
+            android:textSize="50sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Few steps away to a better home!"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:fontFamily="@font/raleway"
+            android:textStyle="italic"
+            android:layout_gravity="center_horizontal"/>
+        <!--  Full Name  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Full Name"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/raleway"
+                android:layout_marginBottom="4dp"/>
+
+            <EditText
+                android:id="@+id/et_fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey_text"
+                android:hint="Enter your full name"
+                android:fontFamily="@font/raleway"
+                android:background="@drawable/round_edit_txt"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--  Phone Number  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/raleway"
+                    android:layout_marginBottom="4dp"/>
+
+                <EditText
+                    android:id="@+id/et_number"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/grey_text"
+                    android:hint="11-digit mobile no. . ."
+                    android:fontFamily="@font/raleway"
+                    android:background="@drawable/round_edit_txt"
+                    android:inputType="phone"
+                    android:padding="8dp" />
+            </LinearLayout>
+            <!--  Birthday  -->
+            <LinearLayout
+                android:paddingStart="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Birth Date"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/raleway"
+                    android:layout_marginBottom="4dp"/>
+
+                <EditText
+                    android:id="@+id/et_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/grey_text"
+                    android:hint="MM/DD/YY"
+                    android:fontFamily="@font/raleway"
+                    android:inputType="date"
+                    android:background="@drawable/round_edit_txt"
+                    android:padding="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <!--  Email Address  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email Address"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/raleway"
+                android:layout_marginBottom="4dp"/>
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey_text"
+                android:hint="Enter valid e-mail address..."
+                android:fontFamily="@font/raleway"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/round_edit_txt"
+                android:padding="8dp" />
+        </LinearLayout>
+        <!--  Password  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/raleway"
+                android:layout_marginBottom="4dp"/>
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey_text"
+                android:hint="Create strong password"
+                android:fontFamily="@font/raleway"
+                android:inputType="textPassword"
+                android:background="@drawable/round_edit_txt"
+                android:padding="8dp" />
+        </LinearLayout>
+        <!--  Confirm Password  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm Password"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/raleway"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/et_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_text"
+            android:hint="Enter password again"
+            android:fontFamily="@font/raleway"
+            android:inputType="textPassword"
+            android:background="@drawable/round_edit_txt"
+            android:padding="8dp" />
+    </LinearLayout>
+
+        <!--  Create Account  -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_create_account"
+            android:layout_width="200dp"
+            android:layout_height="44dp"
+            android:background="@drawable/round_btn"
+            android:textColor="@color/black"
+            android:text="Create Account"
+            android:textSize="15sp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/raleway"
+            android:layout_marginTop="20dp"
+            />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

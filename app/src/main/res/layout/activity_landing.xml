@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_blue">
+
+    <!-- Logo  -->
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="270dp"
+        android:layout_height="270dp"
+        android:src="@drawable/gzr_logo"
+        android:contentDescription="GZR Logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/companyNameTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp"
+         />
+
+    <!-- Company Name -->
+    <TextView
+        android:id="@+id/companyNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost"
+        android:text="GZR Enterprises"
+        android:textColor="@android:color/white"
+        android:textSize="40sp"
+        android:shadowDx="2"
+        android:shadowDy="4"
+        android:shadowRadius="10"
+        android:shadowColor="@color/black"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <!-- Log in & Sign Up -->
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Log In Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="230dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:textColor="@color/black"
+            android:text="Log In"
+            android:textSize="20sp"
+            android:fontFamily="@font/jost"
+            android:layout_marginBottom="16dp"
+            app:backgroundTint="@null" />
+
+        <!-- Sign Up Button -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="230dp"
+            android:layout_height="55dp"
+            android:background="@drawable/round_btn"
+            android:fontFamily="@font/jost"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="Sign Up" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
