@@ -1,6 +1,9 @@
 package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +11,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityMainBinding
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.CatalogueActivity
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.MyCartActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +36,19 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //test buttons
+        val testCatalogue: Button = binding.testCatalogue
+        testCatalogue.setOnClickListener{ view ->
+            val i = Intent(this, CatalogueActivity::class.java)
+            startActivity(i)
+        }
+
+        val testMyCart: Button = binding.testMyCart
+        testMyCart.setOnClickListener{ view ->
+            val i = Intent(this, MyCartActivity::class.java)
+            startActivity(i)
+        }
+
     }
 }
