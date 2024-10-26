@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="152dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/product_item"
+        android:layout_width="364dp"
+        android:layout_height="142.78dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="11.66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="343dp"
+            android:layout_height="124dp"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/ivProduct"
+                android:layout_width="112dp"
+                android:layout_height="116.38dp"
+                android:layout_marginStart="4dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/blinds" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="146dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="64dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivProduct"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Combi Blinds"
+                    android:textColor="#013b8a"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvProductFabric"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fabric Type"
+                    android:textColor="#013b8a"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvProductColors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Black, Red, White"
+                    android:textColor="#013b8a"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llProductPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivProduct">
+
+                <ImageView
+                    android:id="@+id/pricetag"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/pricetag_white" />
+
+                <TextView
+                    android:id="@+id/tvProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₱190/sqm."
+                    android:textColor="#013B8A"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivProductBookmark"
+                android:layout_width="14dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bookmark_white" />
+
+            <ImageView
+                android:id="@+id/ivAddProduct"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/add_product" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
