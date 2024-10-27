@@ -6,13 +6,14 @@
     app:startDestination="@+id/navigation_appointments">
 
     <fragment
-        android:id="@+id/navigation_appointments"
-        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.home.HomeFragment"
-        android:label="@string/title_appointments"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_catalogue"
+        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.CatalogueFragment"
+        android:label="@string/title_catalogue"
+        tools:layout="@layout/activity_catalogue" />
+
 
     <fragment
-        android:id="@+id/navigation_catalogue"
+        android:id="@+id/navigation_appointments"
         android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.dashboard.DashboardFragment"
         android:label="@string/title_catalogue"
         tools:layout="@layout/fragment_dashboard" />
