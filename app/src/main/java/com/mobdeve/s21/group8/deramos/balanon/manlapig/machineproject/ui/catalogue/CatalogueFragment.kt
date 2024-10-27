@@ -30,8 +30,6 @@ class CatalogueFragment : Fragment() {
         val adapterProductList = AdapterProductList(requireContext(), catalogueViewModel.productModels)
         recyclerView.adapter = adapterProductList
 
-        // Set up any additional UI elements as needed from the binding
-
         return root
     }
 
