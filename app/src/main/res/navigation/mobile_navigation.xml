@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_appointments"
-        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.appointments.AppointmentsFragment"
+        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.home.HomeFragment"
         android:label="@string/title_appointments"
-        tools:layout="@layout/activity_appointments" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_catalogue"
-        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.CatalogueFragment"
+        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.dashboard.DashboardFragment"
         android:label="@string/title_catalogue"
-        tools:layout="@layout/activity_catalogue" />
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_cart"

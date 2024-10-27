@@ -66,7 +66,7 @@ public class CatalogueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalogue);
 
-        //this.btnBackCatalogue = findViewById(R.id.ivBackCatalogue);
+        this.btnBackCatalogue = findViewById(R.id.ivBackCatalogue);
         this.ivLogo = findViewById(R.id.ivLogo);
         this.titleCatalogue = findViewById(R.id.titleCatalogue);
         this.ivCart = findViewById(R.id.ivCart);
