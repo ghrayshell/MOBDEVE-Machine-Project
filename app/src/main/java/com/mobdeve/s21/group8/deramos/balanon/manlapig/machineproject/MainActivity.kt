@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityMainBinding
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.AppointmentsActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.CatalogueActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.MyCartActivity
 
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         val testMyCart: Button = binding.testMyCart
         testMyCart.setOnClickListener{ view ->
-            val i = Intent(this, MyCartActivity::class.java)
+            val i = Intent(this, AppointmentsActivity::class.java)
             startActivity(i)
         }
         */

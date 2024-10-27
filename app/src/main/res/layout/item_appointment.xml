@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="375dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginTop="16dp"
+    android:background="@drawable/round_bluecorners">
+
+    <!-- Date Section with Icon -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/iconDate"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+        android:src="@drawable/calendar"
+        android:contentDescription="Date Icon"
+        android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="November 31, 2024"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/main_blue"/>
+    </LinearLayout>
+
+    <!-- Location Section with Icon -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/iconLocation"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/location"
+        android:contentDescription="Location Icon"
+        android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="De La Salle University"
+            android:textSize="18sp"
+            android:textColor="@color/main_blue"/>
+    </LinearLayout>
+
+    <!-- Service Section with Icon -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <ImageView
+            android:id="@+id/iconService"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/tool"
+        android:contentDescription="Service Icon"
+        android:layout_marginEnd="8dp" />
+
+        <TextView
+            android:id="@+id/tvService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blinds Installation"
+            android:textSize="18sp"
+            android:textColor="@color/main_blue"/>
+    </LinearLayout>
+
+    <!-- Cancel Button -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_gravity="end"
+        android:text="Cancel"
+        android:textColor="@android:color/white"
+        android:background="@drawable/round_btn"
+        android:backgroundTint="@color/main_blue"
+        android:layout_marginTop="8dp" />
+
+    <!-- Expanded Product List (Initially Hidden) -->
+    <LinearLayout
+        android:id="@+id/expandedProductList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:paddingTop="8dp">
+
+        <!-- Example product items -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product 1"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product 2"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+</LinearLayout>
