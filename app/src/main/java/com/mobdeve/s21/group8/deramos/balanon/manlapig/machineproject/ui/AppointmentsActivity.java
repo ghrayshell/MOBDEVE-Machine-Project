@@ -2,6 +2,8 @@
 package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui;
 
 import android.os.Bundle;
+import android.widget.ImageView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,13 +16,14 @@ public class AppointmentsActivity extends AppCompatActivity {
     private RecyclerView rvAppointmentsList;
     private AppointmentsAdapter appointmentsAdapter;
     private List<AppointmentsModel> appointmentList;
-
+    private ImageView btnBackAppointments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments);
 
+        btnBackAppointments = findViewById(R.id.ivBackAppointments);
         rvAppointmentsList = findViewById(R.id.rvAppointmentsList);
         appointmentList = new ArrayList<>();
 

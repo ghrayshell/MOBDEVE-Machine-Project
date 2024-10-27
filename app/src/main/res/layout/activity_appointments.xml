@@ -8,6 +8,16 @@
     android:layout_gravity="center_horizontal"
     tools:context=".ui.appointments.AppointmentsFragment">
 
+    <ImageView
+        android:id="@+id/ivBackAppointments"
+        android:layout_width="46.51dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <View
         android:id="@+id/line"
         android:layout_width="fill_parent"
