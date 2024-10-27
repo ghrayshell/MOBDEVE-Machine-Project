@@ -29,13 +29,14 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_appointments, R.id.navigation_catalogue, R.id.navigation_cart
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        //test buttons
+        /*
+        // TEST BUTTONS
         val testCatalogue: Button = binding.testCatalogue
         testCatalogue.setOnClickListener{ view ->
             val i = Intent(this, CatalogueActivity::class.java)
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             val i = Intent(this, MyCartActivity::class.java)
             startActivity(i)
         }
+        */
 
     }
 }

@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
+    <!--
     <Button
         android:id="@+id/testCatalogue"
         android:layout_width="wrap_content"
@@ -49,5 +50,6 @@
         android:text="My Cart Btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
