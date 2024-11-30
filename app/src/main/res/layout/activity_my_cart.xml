@@ -11,11 +11,12 @@
         android:id="@+id/line2"
         android:layout_width="fill_parent"
         android:layout_height="13dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/layout_line_shape"
-        app:layout_constraintBottom_toTopOf="@+id/rvProductList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleMyCart" />
 
     <ImageView
         android:id="@+id/ivBackMyCart"
@@ -30,10 +31,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_marginBottom="224dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="-2dp" />
+        android:layout_height="305dp"
+        app:layout_constraintTop_toBottomOf="@+id/line2"
+        tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
         android:id="@+id/ivLogo"
@@ -49,28 +49,24 @@
         android:id="@+id/titleMyCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginTop="44dp"
         android:text="My Cart"
         android:textColor="#013b8a"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/line2"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="412dp"
         android:layout_height="217dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvProductList" >
+        app:layout_constraintTop_toBottomOf="@+id/line">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="215dp">
 
             <ImageView
                 android:id="@+id/ivConfirmServiceLocation"
@@ -86,28 +82,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
                 app:srcCompat="@drawable/confirm_service_location" />
 
-            <View
-                android:id="@+id/line"
-                android:layout_width="fill_parent"
-                android:layout_height="13dp"
-                android:background="@drawable/layout_line_shape"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/titleChooseAService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="41dp"
-                android:layout_marginTop="3dp"
                 android:layout_marginEnd="40dp"
                 android:text="Satisfied with your choice of window blinds style? Choose a service!"
                 android:textAlignment="center"
                 android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/line" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
@@ -160,7 +146,16 @@
                         android:layout_width="68dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:textColorLink="#094AA9"
                         android:visibility="gone" />
+
+                    <Switch
+                        android:id="@+id/switch2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColorLink="#053B86"
+                        />
 
                 </LinearLayout>
 
@@ -191,11 +186,26 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:visibility="gone" />
+
+                    <Switch
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
                 </LinearLayout>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="fill_parent"
+        android:layout_height="13dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/layout_line_shape"
+        app:layout_constraintTop_toBottomOf="@+id/rvProductList"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,6 +39,7 @@
         android:text="Catalogue Btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    -->
 
     <Button
         android:id="@+id/testMyCart"
@@ -48,6 +49,6 @@
         android:text="My Cart Btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

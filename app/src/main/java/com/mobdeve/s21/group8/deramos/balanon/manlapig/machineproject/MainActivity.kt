@@ -14,6 +14,7 @@ import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databindin
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.AppointmentsActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.CatalogueActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.MyCartActivity
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.MapsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,14 +43,14 @@ class MainActivity : AppCompatActivity() {
         testCatalogue.setOnClickListener{ view ->
             val i = Intent(this, CatalogueActivity::class.java)
             startActivity(i)
-        }
+        }*/
 
         val testMyCart: Button = binding.testMyCart
         testMyCart.setOnClickListener{ view ->
-            val i = Intent(this, AppointmentsActivity::class.java)
+            val i = Intent(this, MapsActivity::class.java)
             startActivity(i)
         }
-        */
+
 
     }
 }

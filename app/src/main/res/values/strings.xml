@@ -3,4 +3,5 @@
     <string name="title_appointments">Appointments</string>
     <string name="title_catalogue">Catalogue</string>
     <string name="title_cart">Your Cart</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

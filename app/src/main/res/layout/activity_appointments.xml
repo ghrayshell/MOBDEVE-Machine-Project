@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
-    tools:context=".ui.appointments.AppointmentsFragment">
+    android:paddingBottom="80dp"
+    tools:context=".ui.appointments.AppointmentsFragment" >
 
     <ImageView
         android:id="@+id/ivBackAppointments"
@@ -22,35 +23,33 @@
         android:id="@+id/line"
         android:layout_width="fill_parent"
         android:layout_height="13dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/layout_line_shape"
-        app:layout_constraintBottom_toTopOf="@+id/rvAppointmentsList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleAppointments" />
 
     <TextView
         android:id="@+id/titleAppointments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:layout_marginBottom="71dp"
+        android:layout_marginTop="60dp"
         android:text="Appointments"
         android:textColor="#013b8a"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/line"
+        android:textSize="38sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAppointmentsList"
         android:layout_width="375dp"
-        android:layout_height="491dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="580dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line" />
 
     <ImageView
         android:id="@+id/ivLogo"
