@@ -2,7 +2,6 @@ package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalo
 
 import androidx.lifecycle.ViewModel
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R
-import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.ProductModel
 
 class MyCartViewModel : ViewModel() {
 
@@ -17,7 +16,18 @@ class MyCartViewModel : ViewModel() {
         val productPrices = arrayOf("₱190/sqm.", "₱190/sqm.", "₱190/sqm.")
 
         for (i in productNames.indices) {
-            add(ProductModel(productImages[i], productPricetag[i], productBookmarkBtns[i], productAddBtns[i], productNames[i], productFabrics[i], productColors[i], productPrices[i]))
+            add(
+                ProductModel(
+                    productImages[i],
+                    productPricetag[i],
+                    productBookmarkBtns[i],
+                    productAddBtns[i],
+                    productNames[i],
+                    productFabrics[i],
+                    productColors[i],
+                    productPrices[i]
+                )
+            )
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui;
+package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue;
 
 import android.content.Context;
 import android.graphics.Color;

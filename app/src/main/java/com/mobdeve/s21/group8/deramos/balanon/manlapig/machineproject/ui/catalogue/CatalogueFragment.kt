@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityCatalogueBinding
-import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.AdapterProductList
 
 class CatalogueFragment : Fragment() {
 
@@ -29,7 +28,11 @@ class CatalogueFragment : Fragment() {
 
         val recyclerView = binding.rvProductList
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val adapterProductList = AdapterProductList(requireContext(), catalogueViewModel.productModels)
+        val adapterProductList =
+            AdapterProductList(
+                requireContext(),
+                catalogueViewModel.productModels
+            )
         recyclerView.adapter = adapterProductList
 
         // Set up Back Button
