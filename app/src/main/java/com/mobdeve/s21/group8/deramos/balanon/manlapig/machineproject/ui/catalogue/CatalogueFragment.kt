@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityCatalogueBinding
 
@@ -37,6 +38,7 @@ class CatalogueFragment : Fragment() {
 
         // Set up Back Button
         binding.ivBackCatalogue.setOnClickListener {
+            FirebaseAuth.getInstance().signOut();
             val intent = Intent(requireContext(), LandingActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)

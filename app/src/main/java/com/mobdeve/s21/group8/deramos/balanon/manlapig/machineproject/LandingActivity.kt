@@ -10,6 +10,8 @@ class LandingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
 
+        //configureFirebaseServices()
+
         val btnLogin = findViewById<Button>(R.id.btn_login)
         val btnSignup = findViewById<Button>(R.id.btn_signup)
 
