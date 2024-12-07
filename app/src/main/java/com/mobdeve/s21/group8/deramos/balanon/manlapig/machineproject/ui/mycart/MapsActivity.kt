@@ -23,9 +23,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
-
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 private var currentMarker: Marker? = null
 
@@ -33,7 +36,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mapView: MapView
     private var googleMap: GoogleMap? = null
-    private lateinit var binding: ActivityMapsBinding // Declare binding object
+    private lateinit var binding: ActivityMapsBinding
+    private val database = Firebase.database.reference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +66,47 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             finish()
             Toast.makeText(this, "Successfully logged out!", Toast.LENGTH_SHORT).show()
         }
+
+        binding.bookButton.setOnClickListener {
+            val month = binding.etMonth.text.toString().trim()
+            val day = binding.etDay.text.toString().trim()
+            val year = binding.etYear.text.toString().trim()
+            val address = binding.etAddress.text.toString().trim()
+
+            if (month.isEmpty() || day.isEmpty() || year.isEmpty() || address.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            saveBooking()
+            Toast.makeText(this, "Appointment Booked!", Toast.LENGTH_SHORT).show()
+            onBackPressed()
+        }
+    }
+
+    private fun saveBooking() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser == null) {
+            Toast.makeText(this, "Please login first", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val bookingData = hashMapOf(
+            "userId" to currentUser.uid,
+            "address" to binding.etAddress.text.toString(),
+            "latitude" to currentMarker?.position?.latitude,
+            "longitude" to currentMarker?.position?.longitude,
+            "timestamp" to System.currentTimeMillis()
+        )
+
+        database.child("bookings").push().setValue(bookingData)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Booking saved", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onMapReady(map: GoogleMap) {

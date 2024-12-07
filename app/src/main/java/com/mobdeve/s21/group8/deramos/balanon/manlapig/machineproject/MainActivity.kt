@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityMainBinding
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.mycart.MapsActivity
+import com.google.firebase.FirebaseApp
 
 class MainActivity : AppCompatActivity() {
 
