@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R;
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.ProductManager;
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.mycart.AdapterCartList;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,6 +31,12 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
     public AdapterProductList(Context context, ArrayList<ProductModel> productModels){
         this.context = context;
         this.productModels = productModels;
+    }
+
+    // REFERENCE to AdapterCartList
+    private AdapterCartList cartAdapter;
+    public void setCartAdapter(AdapterCartList cartAdapter) {
+        this.cartAdapter = cartAdapter;
     }
 
     @NonNull
@@ -87,6 +95,8 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
             int currentPosition = holder.getAdapterPosition();
             product.setAdded(true);
 
+
+
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
             String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get the current user's ID
 
@@ -105,7 +115,14 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
                         Log.e("AdapterCartList", "Failed to add product to cart", e);
                     });
 
+            ProductManager.getInstance().addToCart(product);
+            // Add to cart adapter
+            if (cartAdapter != null) {
+                cartAdapter.notifyDataSetChanged();
+            }
+
             notifyItemChanged(currentPosition);
+
         });
 
         holder.ivBookmarkBtn.setOnClickListener(v -> {
@@ -139,6 +156,18 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
             tvColors = itemView.findViewById(R.id.tvProductColors);
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
             cardView = itemView.findViewById(R.id.product_item);
+        }
+    }
+
+    public void productAddedToCartChanged(ProductModel product, boolean addedToCart) {
+        // Assuming `adapterProductList` is a reference to AdapterProductList in your activity or fragment
+        for (int i = 0; i < getItemCount(); i++) {
+            ProductModel productInList = productModels.get(i);
+            if (productInList.getProductId().equals(product.getProductId())) {
+                productInList.setAdded(addedToCart); // Set the "added" state back to false if removed
+                notifyItemChanged(i); // Notify the adapter to update the UI
+                break;
+            }
         }
     }
 

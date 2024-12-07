@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityCatalogueBinding
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.mycart.AdapterCartList
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.mycart.MyCartViewModel
 
 class CatalogueFragment : Fragment() {
 
@@ -22,6 +24,10 @@ class CatalogueFragment : Fragment() {
     private lateinit var catalogueViewModel: CatalogueViewModel
     private lateinit var adapterProductList: AdapterProductList
     private val productModels = ArrayList<ProductModel>()
+
+    //REFERENCE
+    private lateinit var adapterCartList: AdapterCartList
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

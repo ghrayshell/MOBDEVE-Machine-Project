@@ -15,6 +15,7 @@ import kotlin.collections.ArrayList
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityMyCartBinding
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.AdapterProductList
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.ProductModel
 
 class MyCartFragment : Fragment() {
@@ -25,6 +26,9 @@ class MyCartFragment : Fragment() {
     private lateinit var myCartViewModel: MyCartViewModel
     private lateinit var adapterCartList: AdapterCartList
     private val productModels = ArrayList<ProductModel>()
+
+    //REFERENCE
+    private lateinit var adapterProductList: AdapterProductList
 
     override fun onCreateView(
         inflater: LayoutInflater,

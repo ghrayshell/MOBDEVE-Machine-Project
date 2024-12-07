@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R;
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.AdapterProductList;
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.ProductModel;
 import com.squareup.picasso.Picasso;
 
@@ -31,6 +32,12 @@ public class AdapterCartList extends RecyclerView.Adapter<AdapterCartList.MyView
     public AdapterCartList(Context context, ArrayList<ProductModel> productModels){
         this.context = context;
         this.productModels = productModels;
+    }
+
+    //REFERENCE to AdapterProductList
+    private AdapterProductList productAdapter; // Reference to AdapterProductList
+    public void setProductAdapter(AdapterProductList productAdapter) {
+        this.productAdapter = productAdapter;
     }
 
     @NonNull
@@ -106,6 +113,7 @@ public class AdapterCartList extends RecyclerView.Adapter<AdapterCartList.MyView
                             .delete()
                             .addOnSuccessListener(aVoid -> {
                                 Toast.makeText(context, "Item removed from cart", Toast.LENGTH_SHORT).show();
+                                productAdapter.productAddedToCartChanged(productToDelete, false);
                             })
                             .addOnFailureListener(e -> {
                                 Log.e("Firestore", "Error deleting item", e);
@@ -125,6 +133,11 @@ public class AdapterCartList extends RecyclerView.Adapter<AdapterCartList.MyView
     @Override
     public int getItemCount() {
         return productModels.size();
+    }
+
+    public void addProduct(ProductModel product) {
+        productModels.add(product);
+        notifyDataSetChanged();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
