@@ -15,7 +15,7 @@ import kotlin.collections.ArrayList
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityMyCartBinding
-import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.AdapterProductList
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.ProductModel
 
 class MyCartFragment : Fragment() {
 
@@ -23,41 +23,36 @@ class MyCartFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var myCartViewModel: MyCartViewModel
-    private lateinit var adapterProductList: AdapterProductList
-
+    private lateinit var adapterCartList: AdapterCartList
+    private val productModels = ArrayList<ProductModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Initialize ViewModel
         myCartViewModel = ViewModelProvider(this).get(MyCartViewModel::class.java)
 
-        // Inflate layout and get root view
         _binding = ActivityMyCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        // Set up RecyclerView
         val recyclerView = binding.rvProductList
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        adapterCartList = AdapterCartList(requireContext(), ArrayList(emptyList()))
+        recyclerView.adapter = adapterCartList
 
-        // Initialize adapter with an empty list to start
-        adapterProductList = AdapterProductList(requireContext(), ArrayList(emptyList()))
-        recyclerView.adapter = adapterProductList
 
-        myCartViewModel.productModels.observe(viewLifecycleOwner) { productList ->
-            if (productList.isEmpty()) {
-                binding.tvEmptyCart.visibility = View.VISIBLE
-            } else {
-                binding.tvEmptyCart.visibility = View.GONE
-                adapterProductList.updateProductList(ArrayList(productList)) // Update adapter
+        // Observe LiveData from ViewModel
+        myCartViewModel.productModels.observe(viewLifecycleOwner, { products ->
+            if (products != null) {
+                adapterCartList.updateData(products) // Update the adapter's dataset
             }
-        }
+        })
 
-        myCartViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
-            errorMessage?.let {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+        // Observe error messages from ViewModel
+        myCartViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            if (message != null) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         }
 

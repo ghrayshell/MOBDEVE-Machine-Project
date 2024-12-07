@@ -26,8 +26,9 @@ class CatalogueViewModel : ViewModel() {
                 val products = ArrayList<ProductModel>()
                 for (document in result) {
                     val product = document.toObject(ProductModel::class.java)
+                    product.productId = document.id  // Set the Firestore document ID in the ProductModel
                     products.add(product)
-                    Log.d("CatalogueFragment", "Product: ${product.name}, Price: ${product.price}")
+                    Log.d("CatalogueFragment", "Product: ${product.name}, Fabric: ${product.fabric}\", Colors: ${product.colors}\", Price: ${product.price}\", ProductId: ${product.productId}")
                 }
                 _productModels.postValue(products)  // Update LiveData with the fetched products
             }
