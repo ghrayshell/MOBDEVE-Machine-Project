@@ -54,13 +54,19 @@ class CatalogueFragment : Fragment() {
             }
         })
 
-        // Set up Back Button
+        /*// Set up Back Button
         binding.ivBackCatalogue.setOnClickListener {
+            requireActivity().onBackPressed()
+        }*/
+
+        // Logout Button
+        binding.ivLogoutCatalogue.setOnClickListener {
             FirebaseAuth.getInstance().signOut();
             val intent = Intent(requireContext(), LandingActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             requireActivity().finish()
+            Toast.makeText(requireContext(), "Successfully logged out!", Toast.LENGTH_SHORT).show()
         }
 
         return root

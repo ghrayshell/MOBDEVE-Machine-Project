@@ -9,15 +9,25 @@
     android:paddingBottom="80dp"
     tools:context=".ui.appointments.AppointmentsFragment" >
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/ivBackAppointments"
-        android:layout_width="46.51dp"
-        android:layout_height="49dp"
+        android:layout_width="43dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+-->
+    <ImageView
+        android:id="@+id/ivLogoutAppointments"
+        android:layout_width="43dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
 
     <View
         android:id="@+id/line"

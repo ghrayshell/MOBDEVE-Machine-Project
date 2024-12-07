@@ -7,6 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".ui.mycart.MyCartFragment">
 
+    <!--<ImageView
+        android:id="@+id/ivBackMyCart"
+        android:layout_width="43dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />-->
+
+    <ImageView
+        android:id="@+id/ivLogoutMyCart"
+        android:layout_width="43dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
+
     <View
         android:id="@+id/line2"
         android:layout_width="fill_parent"
@@ -17,16 +37,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleMyCart" />
-
-    <ImageView
-        android:id="@+id/ivBackMyCart"
-        android:layout_width="46.51dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductList"

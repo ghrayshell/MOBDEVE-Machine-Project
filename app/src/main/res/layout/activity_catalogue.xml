@@ -25,7 +25,7 @@
         android:id="@+id/titleCatalogue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="60dp"
         android:text="Catalogue"
         android:textColor="#013b8a"
         android:textSize="40sp"
@@ -54,7 +54,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="135dp"
         android:layout_height="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,13 +101,24 @@
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/ivBackCatalogue"
-        android:layout_width="46.51dp"
-        android:layout_height="49dp"
+        android:layout_width="43dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />-->
+
+    <ImageView
+        android:id="@+id/ivLogoutCatalogue"
+        android:layout_width="43dp"
+        android:layout_height="42dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
