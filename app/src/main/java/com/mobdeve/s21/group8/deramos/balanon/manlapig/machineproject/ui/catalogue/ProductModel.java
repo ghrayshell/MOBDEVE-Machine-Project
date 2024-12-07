@@ -2,7 +2,7 @@ package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalo
 
 public class ProductModel {
     int price;
-    String name, fabric, colors, image; //hardcoded for now
+    String name, fabric, colors, image, productId;
     boolean isBookmarked, isAdded;
 
     // No-argument constructor (required for Firestore deserialization)
@@ -10,7 +10,7 @@ public class ProductModel {
         // Firestore requires a no-argument constructor for deserialization
     }
 
-    public ProductModel(String image, int pricetag, int bookmarkBtn, int addBtn, String name, String fabric, String colors, int price) {
+    public ProductModel(String image, int pricetag, int bookmarkBtn, int addBtn, String name, String fabric, String colors, int price, String productId) {
         this.image = image;
         this.name = name;
         this.fabric = fabric;
@@ -18,6 +18,7 @@ public class ProductModel {
         this.price = price;
         this.isBookmarked = false;
         this.isAdded = false;
+        this.productId = "";
     }
 
     public String getImage() {
@@ -75,4 +76,8 @@ public class ProductModel {
     public void setAdded(boolean isAdded) {
         this.isAdded = isAdded;
     }
+
+    public String getProductId(){return productId;}
+
+    public void setProductId(String productId){this.productId = productId;}
 }

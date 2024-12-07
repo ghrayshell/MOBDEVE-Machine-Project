@@ -30,21 +30,15 @@ class MyCartViewModel : ViewModel() {
 
             // Fetch all documents in the cart subcollection
             cartRef.get()
-                .addOnSuccessListener { querySnapshot ->
-                    if (!querySnapshot.isEmpty) {
-                        val productList = mutableListOf<ProductModel>()
-
-                        // Iterate through documents and map them to ProductModel
-                        for (document in querySnapshot) {
-                            val product = document.toObject(ProductModel::class.java)
-                            productList.add(product)
-                        }
-
-                        _productModels.value = productList
-                    } else {
-                        _errorMessage.value = "Your cart is empty."
-                        _productModels.value = emptyList() // Clear the product list if empty
+                .addOnSuccessListener { result ->
+                    val products = ArrayList<ProductModel>()
+                    for (document in result) {
+                        val product = document.toObject(ProductModel::class.java)
+                        product.productId = document.id  // Set the Firestore document ID in the ProductModel
+                        products.add(product)
+                        Log.d("MyCartFragment", "Product: ${product.name}, Fabric: ${product.fabric}\", Colors: ${product.colors}\", Price: ${product.price}\", ProductId: ${product.productId}")
                     }
+                    _productModels.postValue(products)  // Update LiveData with the fetched products
                 }
                 .addOnFailureListener { exception ->
                     _errorMessage.value = "Error fetching cart: ${exception.message}"

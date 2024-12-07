@@ -93,6 +93,7 @@
                     android:text="₱190/sqm."
                     android:textColor="#013B8A"
                     android:textSize="20sp" />
+
             </LinearLayout>
 
             <ImageView
@@ -114,6 +115,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/add_product" />
+
+            <ImageView
+                android:id="@+id/ivDeleteProduct"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/delete_product"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
