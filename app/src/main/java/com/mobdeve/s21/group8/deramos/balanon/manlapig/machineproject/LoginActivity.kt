@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var fAuth: FirebaseAuth
+    private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +31,7 @@ class LoginActivity : AppCompatActivity() {
         val btnBack = findViewById<ImageButton>(R.id.btn_back)
 
         fAuth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
 
         if(fAuth.currentUser != null){
             // Navigate to Main Activity
@@ -62,7 +65,28 @@ class LoginActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val user = fAuth.currentUser
+                        val userId = user?.uid
                         Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+
+                        if (userId != null) {
+                            // Fetch user data from Firestore
+                            db.collection("users").document(userId).get()
+                                .addOnSuccessListener { document ->
+                                    if (document.exists()) {
+                                        val name = document.getString("fullName")
+
+                                        // Use the data (e.g., display in UI or save locally)
+                                        Toast.makeText(this, "Welcome, $name!", Toast.LENGTH_SHORT).show()
+                                    } else {
+                                        Toast.makeText(this, "User data not found.", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                .addOnFailureListener { e ->
+                                    Toast.makeText(this, "Error loading data: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        } else {
+                            Toast.makeText(this, "User ID is null.", Toast.LENGTH_SHORT).show()
+                        }
 
                         // Navigate to MainActivity
                         val intent = Intent(this, MainActivity::class.java)

@@ -1,33 +1,56 @@
-package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue
+package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.mycart
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.ProductModel
 
 class MyCartViewModel : ViewModel() {
+    private val _productModels = MutableLiveData<List<ProductModel>>()
+    val productModels: LiveData<List<ProductModel>> get() = _productModels
 
-    val productModels = ArrayList<ProductModel>().apply {
-        val productImages = intArrayOf(R.drawable.blinds, R.drawable.blinds, R.drawable.blinds)
-        val productPricetag = intArrayOf(R.drawable.pricetag_white, R.drawable.pricetag_white, R.drawable.pricetag_white)
-        val productBookmarkBtns = intArrayOf(R.drawable.bookmark_checked, R.drawable.bookmark_white, R.drawable.bookmark_blue)
-        val productAddBtns = intArrayOf(R.drawable.add_product, R.drawable.add_product, R.drawable.add_product)
-        val productNames = arrayOf("Combi Blinds", "Combi Blinds", "Combi Blinds")
-        val productFabrics = arrayOf("Fabric Type", "Fabric Type", "Fabric Type")
-        val productColors = arrayOf("Black, Red, White", "Black, Red, White", "Black, Red, White")
-        val productPrices = arrayOf("₱190/sqm.", "₱190/sqm.", "₱190/sqm.")
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> get() = _errorMessage
 
-        for (i in productNames.indices) {
-            add(
-                ProductModel(
-                    productImages[i],
-                    productPricetag[i],
-                    productBookmarkBtns[i],
-                    productAddBtns[i],
-                    productNames[i],
-                    productFabrics[i],
-                    productColors[i],
-                    productPrices[i]
-                )
-            )
+    private val db = FirebaseFirestore.getInstance()
+    private val fAuth = FirebaseAuth.getInstance()
+
+    init {
+        fetchCartFromFirestore()
+    }
+
+    private fun fetchCartFromFirestore() {
+        val currentUser = fAuth.currentUser
+        if (currentUser != null) {
+            // Get the cart collection for the current user
+            val cartRef = db.collection("carts").document(currentUser.uid)
+
+            // Fetch cart data
+            cartRef.get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        // Retrieve the products list from the document
+                        val products = document.get("products") as? List<*>
+
+                        // Check if products is not null and is a list of ProductModel
+                        if (products != null) {
+                            val productList = products.filterIsInstance<ProductModel>()
+                            _productModels.value = productList
+                        } else {
+                            _errorMessage.value = "Cart is empty or invalid format."
+                        }
+                    } else {
+                        _errorMessage.value = "No cart found for the user."
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    _errorMessage.value = "Error fetching cart: ${exception.message}"
+                }
+        } else {
+            _errorMessage.value = "User is not authenticated."
         }
     }
 }

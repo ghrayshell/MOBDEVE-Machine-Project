@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:text="Combi Blinds"
                     android:textColor="#013b8a"
-                    android:textSize="22sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
 
                 <TextView

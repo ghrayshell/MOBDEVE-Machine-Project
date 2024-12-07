@@ -2,17 +2,23 @@ package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalo
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -38,69 +44,100 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
 
         ProductModel product = productModels.get(position);
 
-        holder.ivImage.setImageResource(productModels.get(position).getImage());
-        holder.ivPricetag.setImageResource(productModels.get(position).getPricetag());
-        holder.ivBookmarkBtn.setImageResource(productModels.get(position).getBookmarkBtn());
-        holder.ivAddBtn.setImageResource(productModels.get(position).getAddBtn());
-        holder.tvName.setText(productModels.get(position).getName());
-        holder.tvFabric.setText(productModels.get(position).getFabric());
-        holder.tvColors.setText(productModels.get(position).getColors());
-        holder.tvPrice.setText(productModels.get(position).getPrice());
-        holder.cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+        // Load image URL using Picasso (you can use Glide too)
+        Picasso.get()
+                .load(product.getImage())  // Assuming you have a URL or file name for the image
+                .into(holder.ivImage);
 
-        //if product is added
-        if (product.getAdded()) {
+        // Update product details in TextViews
+        holder.tvName.setText(product.getName());        // Set product name
+        holder.tvFabric.setText(product.getFabric());    // Set fabric information
+        holder.tvColors.setText(product.getColors());    // Set colors information
+        holder.tvPrice.setText(String.format("$%s", product.getPrice()));  // Set price
+
+        // Handle the static resources based on product states
+        if (product.isAdded()) {
             holder.ivPricetag.setImageResource(R.drawable.pricetag_blue);
-            if(!product.getBookmarked()){
-                holder.ivBookmarkBtn.setImageResource(R.drawable.bookmark_blue);
-            }
             holder.ivAddBtn.setVisibility(View.GONE);
-            holder.tvName.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.tvFabric.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.tvColors.setTextColor(Color.parseColor("#FFFFFF"));
-            holder.tvPrice.setTextColor(Color.parseColor("#FFFFFF"));
+            holder.tvName.setTextColor(Color.WHITE);
+            holder.tvFabric.setTextColor(Color.WHITE);
+            holder.tvColors.setTextColor(Color.WHITE);
+            holder.tvPrice.setTextColor(Color.WHITE);
             holder.cardView.setCardBackgroundColor(Color.parseColor("#013B8A"));
         } else {
-            holder.ivPricetag.setImageResource(product.getPricetag());
+            holder.ivPricetag.setImageResource(R.drawable.pricetag_white);
             holder.ivAddBtn.setVisibility(View.VISIBLE);
             holder.tvName.setTextColor(Color.parseColor("#013B8A"));
             holder.tvFabric.setTextColor(Color.parseColor("#013B8A"));
             holder.tvColors.setTextColor(Color.parseColor("#013B8A"));
             holder.tvPrice.setTextColor(Color.parseColor("#013B8A"));
-            holder.cardView.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+            holder.cardView.setCardBackgroundColor(Color.WHITE);
         }
 
-        //bookmark view
-        if(product.getBookmarked())
+        // Handle bookmark button logic
+        if (product.isBookmarked()) {
             holder.ivBookmarkBtn.setImageResource(R.drawable.bookmark_checked);
-        else if(product.getAdded())
+        } else if (product.isAdded()) {
             holder.ivBookmarkBtn.setImageResource(R.drawable.bookmark_blue);
-        else
+        } else {
             holder.ivBookmarkBtn.setImageResource(R.drawable.bookmark_white);
+        }
 
-        holder.ivAddBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // Click listeners for Add and Bookmark buttons
+        holder.ivAddBtn.setOnClickListener(v -> {
+            int currentPosition = holder.getAdapterPosition();
+            product.setAdded(true);
+            Toast.makeText(context, "Clicked!", Toast.LENGTH_SHORT).show();
 
-                int currentPosition = holder.getAdapterPosition();
+            FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get the current user's ID
 
-                product.setAdded(true);
-                notifyItemChanged(currentPosition);
-            }
+            // Query the products collection to get all products
+            firestore.collection("products")
+                    .get()  // Get all products
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            // Iterate through the documents
+                            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                ProductModel findProduct = documentSnapshot.toObject(ProductModel.class);
+
+                                // Now you can use the document ID and product data
+                                String productId = documentSnapshot.getId();  // The autogenerated document ID
+
+                                // Add this product to the user's cart
+                                if (userId != null) {
+                                    firestore.collection("users")
+                                            .document(userId)
+                                            .collection("cart")
+                                            .document(productId)  // Use the productId as the document ID in the user's cart
+                                            .set(findProduct)  // Save product details in the user's cart
+                                            .addOnSuccessListener(aVoid -> {
+                                                // Successfully added product to cart
+                                                Toast.makeText(context, "Added to your cart!", Toast.LENGTH_SHORT).show();
+                                            })
+                                            .addOnFailureListener(e -> {
+                                                // Handle failure
+                                                Log.e("AdapterProductList", "Failed to add product to cart", e);
+                                            });
+                                }
+                            }
+                        } else {
+                            // Handle the case where no products are found
+                            Log.e("Firestore", "No products found");
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle the error
+                        Log.e("Firestore", "Error fetching products", e);
+                    });
+
+            notifyItemChanged(currentPosition);
         });
 
-        holder.ivBookmarkBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentPosition = holder.getAdapterPosition();
-
-                if(product.getBookmarked())
-                    product.setBookmarked(false);
-                else
-                    product.setBookmarked(true);
-
-                notifyItemChanged(currentPosition);
-            }
+        holder.ivBookmarkBtn.setOnClickListener(v -> {
+            int currentPosition = holder.getAdapterPosition();
+            product.setBookmarked(!product.isBookmarked());
+            notifyItemChanged(currentPosition);
         });
     }
 
@@ -129,5 +166,10 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
             tvPrice = itemView.findViewById(R.id.tvProductPrice);
             cardView = itemView.findViewById(R.id.product_item);
         }
+    }
+
+    public void updateProductList(ArrayList<ProductModel> newList) {
+        this.productModels = newList;
+        notifyDataSetChanged();
     }
 }

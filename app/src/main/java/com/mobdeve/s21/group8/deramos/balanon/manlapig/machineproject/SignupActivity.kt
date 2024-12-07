@@ -3,13 +3,14 @@ package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SignupActivity : AppCompatActivity() {
 
@@ -36,6 +37,7 @@ class SignupActivity : AppCompatActivity() {
         val btnBack = findViewById<ImageButton>(R.id.btn_back)
 
         fAuth = FirebaseAuth.getInstance()
+        val db = FirebaseFirestore.getInstance()
 
         if(fAuth.currentUser != null){
             // Navigate to Main Activity
@@ -52,6 +54,7 @@ class SignupActivity : AppCompatActivity() {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString().trim()
             val confirm_password = etConfirmPassword.text.toString().trim()
+
 
 
             if (username.isEmpty() || number.isEmpty() || birthday.isEmpty() || email.isEmpty() || password.isEmpty() || confirm_password.isEmpty()) {
@@ -82,6 +85,47 @@ class SignupActivity : AppCompatActivity() {
                         //saveUserInfoToFirestore(user?.uid, username.toString(), email.toString(), profileImg)
                         Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
 
+                        if(user != null){
+                            val userData = hashMapOf(
+                                "fullName" to username,
+                                "birthday" to birthday,
+                                "email" to user.email,
+                                "phoneNumber" to number,
+                                "uid" to user.uid
+                            )
+
+                            // Save user data to Firestore in a 'users' collection under the user's UID
+                            db.collection("users")
+                                .document(user.uid)
+                                .set(userData)
+                                .addOnSuccessListener {
+                                    // Data saved successfully
+                                    Toast.makeText(this, "User data saved!", Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener { e ->
+                                    // Handle failure
+                                    Toast.makeText(this, "Error saving data: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+
+                            // Create an empty shopping cart for the new user
+                            val cartData = hashMapOf<String, Any>(
+                                "products" to emptyList<String>() // A list to store product IDs
+                            )
+
+                            // Save shopping cart to Firestore under the user's UID
+                            db.collection("carts")
+                                .document(user.uid)
+                                .set(cartData)
+                                .addOnSuccessListener {
+                                    // Cart created successfully
+                                    Toast.makeText(this, "Shopping cart created!", Toast.LENGTH_SHORT).show()
+                                }
+                                .addOnFailureListener { e ->
+                                    // Handle failure
+                                    Toast.makeText(this, "Error creating cart: ${e.message}", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+
                         // Navigate to Main Activity
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
@@ -89,6 +133,8 @@ class SignupActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
+
+
                 }
 
         }

@@ -1,35 +1,27 @@
 package com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue;
 
 public class ProductModel {
-    int image, pricetag, bookmarkBtn, addBtn;
-    String name, fabric, colors, price; //hardcoded for now
+    int price;
+    String name, fabric, colors, image; //hardcoded for now
     boolean isBookmarked, isAdded;
 
-    public ProductModel(int image, int pricetag, int bookmarkBtn, int addBtn, String name, String fabric, String colors, String price) {
+    // No-argument constructor (required for Firestore deserialization)
+    public ProductModel() {
+        // Firestore requires a no-argument constructor for deserialization
+    }
+
+    public ProductModel(String image, int pricetag, int bookmarkBtn, int addBtn, String name, String fabric, String colors, int price) {
         this.image = image;
-        this.pricetag = pricetag;
-        this.bookmarkBtn = bookmarkBtn;
-        this.addBtn = addBtn;
         this.name = name;
         this.fabric = fabric;
         this.colors = colors;
         this.price = price;
+        this.isBookmarked = false;
+        this.isAdded = false;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
-    }
-
-    public int getPricetag() {
-        return pricetag;
-    }
-
-    public int getBookmarkBtn() {
-        return bookmarkBtn;
-    }
-
-    public int getAddBtn() {
-        return addBtn;
     }
 
     public String getName() {
@@ -44,28 +36,12 @@ public class ProductModel {
         return colors;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public boolean getAdded() { return isAdded; }
-
-    public boolean getBookmarked() {return isBookmarked; }
-
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
-    }
-
-    public void setPricetag(int pricetag) {
-        this.pricetag = pricetag;
-    }
-
-    public void setBookmarkBtn(int bookmarkBtn) {
-        this.bookmarkBtn = bookmarkBtn;
-    }
-
-    public void setAddBtn(int addBtn) {
-        this.addBtn = addBtn;
     }
 
     public void setName(String name) {
@@ -80,12 +56,23 @@ public class ProductModel {
         this.colors = colors;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public void setAdded(boolean isAdded) { this.isAdded = isAdded; }
+    public boolean isBookmarked() {
+        return isBookmarked;
+    }
 
-    public void setBookmarked(boolean isBookmarked) { this.isBookmarked = isBookmarked; }
+    public void setBookmarked(boolean isBookmarked) {
+        this.isBookmarked = isBookmarked;
+    }
 
+    public boolean isAdded() {
+        return isAdded;
+    }
+
+    public void setAdded(boolean isAdded) {
+        this.isAdded = isAdded;
+    }
 }
