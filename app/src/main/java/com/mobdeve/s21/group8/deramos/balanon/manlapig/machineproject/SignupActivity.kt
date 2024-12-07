@@ -99,31 +99,35 @@ class SignupActivity : AppCompatActivity() {
                                 .document(user.uid)
                                 .set(userData)
                                 .addOnSuccessListener {
-                                    // Data saved successfully
                                     Toast.makeText(this, "User data saved!", Toast.LENGTH_SHORT).show()
+
+                                    db.collection("users")
+                                        .document(user.uid)
+                                        .collection("cart")
+                                        .add(hashMapOf<String, Any>()) // Add an empty document to initialize the collection
+                                        .addOnSuccessListener {
+                                            Toast.makeText(this, "Shopping cart initialized!", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Toast.makeText(this, "Error creating cart: ${e.message}", Toast.LENGTH_SHORT).show()
+                                        }
+
+                                    db.collection("users")
+                                        .document(user.uid)
+                                        .collection("appointments")
+                                        .add(hashMapOf<String, Any>()) // Add an empty document to initialize the collection
+                                        .addOnSuccessListener {
+                                            Toast.makeText(this, "Appointments list initialized!", Toast.LENGTH_SHORT).show()
+                                        }
+                                        .addOnFailureListener { e ->
+                                            Toast.makeText(this, "Error creating appointments list: ${e.message}", Toast.LENGTH_SHORT).show()
+                                        }
                                 }
                                 .addOnFailureListener { e ->
                                     // Handle failure
                                     Toast.makeText(this, "Error saving data: ${e.message}", Toast.LENGTH_SHORT).show()
                                 }
 
-                            // Create an empty shopping cart for the new user
-                            val cartData = hashMapOf<String, Any>(
-                                "products" to emptyList<String>() // A list to store product IDs
-                            )
-
-                            // Save shopping cart to Firestore under the user's UID
-                            db.collection("carts")
-                                .document(user.uid)
-                                .set(cartData)
-                                .addOnSuccessListener {
-                                    // Cart created successfully
-                                    Toast.makeText(this, "Shopping cart created!", Toast.LENGTH_SHORT).show()
-                                }
-                                .addOnFailureListener { e ->
-                                    // Handle failure
-                                    Toast.makeText(this, "Error creating cart: ${e.message}", Toast.LENGTH_SHORT).show()
-                                }
                         }
 
                         // Navigate to Main Activity

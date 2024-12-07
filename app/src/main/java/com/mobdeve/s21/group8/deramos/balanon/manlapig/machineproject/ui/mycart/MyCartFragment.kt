@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -43,14 +44,18 @@ class MyCartFragment : Fragment() {
         adapterProductList = AdapterProductList(requireContext(), ArrayList(emptyList()))
         recyclerView.adapter = adapterProductList
 
-        // Observe the LiveData in the ViewModel
         myCartViewModel.productModels.observe(viewLifecycleOwner) { productList ->
             if (productList.isEmpty()) {
-                // Show empty cart message
                 binding.tvEmptyCart.visibility = View.VISIBLE
             } else {
                 binding.tvEmptyCart.visibility = View.GONE
-                adapterProductList.updateProductList(ArrayList(productList)) // Update adapter with new list
+                adapterProductList.updateProductList(ArrayList(productList)) // Update adapter
+            }
+        }
+
+        myCartViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            errorMessage?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
 
