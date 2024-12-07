@@ -117,10 +117,10 @@ class SignupActivity : AppCompatActivity() {
                                         .collection("appointments")
                                         .add(hashMapOf<String, Any>()) // Add an empty document to initialize the collection
                                         .addOnSuccessListener {
-                                            Toast.makeText(this, "Appointments initialized!", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, "Appointments list initialized!", Toast.LENGTH_SHORT).show()
                                         }
                                         .addOnFailureListener { e ->
-                                            Toast.makeText(this, "Error creating cart: ${e.message}", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(this, "Error creating appointments list: ${e.message}", Toast.LENGTH_SHORT).show()
                                         }
                                 }
                                 .addOnFailureListener { e ->
