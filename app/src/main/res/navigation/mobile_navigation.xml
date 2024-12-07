@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_cart"
-        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.MyCartFragment"
+        android:name="com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.mycart.MyCartFragment"
         android:label="@string/title_cart"
         tools:layout="@layout/activity_my_cart" />
 </navigation>

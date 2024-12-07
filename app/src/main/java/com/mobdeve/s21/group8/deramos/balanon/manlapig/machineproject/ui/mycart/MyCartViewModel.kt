@@ -26,30 +26,30 @@ class MyCartViewModel : ViewModel() {
         val currentUser = fAuth.currentUser
         if (currentUser != null) {
             // Get the cart collection for the current user
-            val cartRef = db.collection("carts").document(currentUser.uid)
+            val cartRef = db.collection("users").document(currentUser.uid).collection("cart")
 
-            // Fetch cart data
+            // Fetch all documents in the cart subcollection
             cartRef.get()
-                .addOnSuccessListener { document ->
-                    if (document.exists()) {
-                        // Retrieve the products list from the document
-                        val products = document.get("products") as? List<*>
+                .addOnSuccessListener { querySnapshot ->
+                    if (!querySnapshot.isEmpty) {
+                        val productList = mutableListOf<ProductModel>()
 
-                        // Check if products is not null and is a list of ProductModel
-                        if (products != null) {
-                            val productList = products.filterIsInstance<ProductModel>()
-                            _productModels.value = productList
-                        } else {
-                            _errorMessage.value = "Cart is empty or invalid format."
+                        // Iterate through documents and map them to ProductModel
+                        for (document in querySnapshot) {
+                            val product = document.toObject(ProductModel::class.java)
+                            productList.add(product)
                         }
+
+                        _productModels.value = productList
                     } else {
-                        _errorMessage.value = "No cart found for the user."
+                        _errorMessage.value = "Your cart is empty."
+                        _productModels.value = emptyList() // Clear the product list if empty
                     }
                 }
                 .addOnFailureListener { exception ->
                     _errorMessage.value = "Error fetching cart: ${exception.message}"
                 }
-        } else {
+        }else {
             _errorMessage.value = "User is not authenticated."
         }
     }
