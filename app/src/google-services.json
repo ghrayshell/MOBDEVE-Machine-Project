@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "692013064417",
+    "project_id": "mobdeve-mp-s21-group-8",
+    "storage_bucket": "mobdeve-mp-s21-group-8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692013064417:android:f66803dbb52b2d45e757a0",
+        "android_client_info": {
+          "package_name": "com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD04mbgcP1GVEQzwWZEuAM4p1r61ypDnFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
