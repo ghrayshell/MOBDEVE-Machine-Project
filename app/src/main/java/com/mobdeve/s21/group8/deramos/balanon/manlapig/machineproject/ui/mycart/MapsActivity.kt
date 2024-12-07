@@ -58,7 +58,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             // Add a marker in a default location (e.g., a city center) and move the camera
             val defaultLocation = LatLng(14.5995, 120.9842) // Manila, Philippines (example)
             currentMarker = googleMap?.addMarker(MarkerOptions().position(defaultLocation).title("Selected Location"))
-            googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
 
             // Set the custom InfoWindowAdapter
             googleMap?.setInfoWindowAdapter(CustomInfoWindowAdapter())
@@ -74,11 +73,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 currentMarker?.showInfoWindow()
             }
 
+            googleMap?.moveCamera(CameraUpdateFactory.newLatLngZoom(defaultLocation, 10f))
+
             // Enable zoom controls and settings
             googleMap?.uiSettings?.isZoomControlsEnabled = true
             googleMap?.uiSettings?.isCompassEnabled = true
 
-            Log.d("MapsActivity", "Map is ready and configured")
+            //Log.d("MapsActivity", "Map is ready and configured")
         } catch (e: Exception) {
             Log.e("MapsActivity", "Error in onMapReady", e)
             Toast.makeText(this, "Error configuring map: ${e.message}", Toast.LENGTH_LONG).show()

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.collections.ArrayList
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.LandingActivity
+import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.R
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.databinding.ActivityMyCartBinding
 import com.mobdeve.s21.group8.deramos.balanon.manlapig.machineproject.ui.catalogue.AdapterProductList
 
@@ -61,11 +63,10 @@ class MyCartFragment : Fragment() {
 
         // Handle confirm button click (e.g., go to next screen)
         binding.ivConfirmServiceLocation.setOnClickListener {
-            val intent = Intent(requireContext(), LandingActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-            requireActivity().finish()
+            val i = Intent(requireContext(), MapsActivity::class.java)
+            startActivity(i)
         }
+
 
         // Set up Back Button and sign out user
         binding.ivBackMyCart.setOnClickListener {

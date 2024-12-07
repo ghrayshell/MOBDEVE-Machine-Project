@@ -33,12 +33,5 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        val testMyCart: Button = binding.testMyCart
-        testMyCart.setOnClickListener {
-            val i = Intent(this, MapsActivity::class.java)
-            startActivity(i)
-            Toast.makeText(this, "Launching MapsActivity", Toast.LENGTH_SHORT).show()
-        }
     }
 }
