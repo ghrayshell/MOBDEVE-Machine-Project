@@ -1,10 +1,196 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivLogo3"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <ImageView
+        android:id="@+id/ivBackMyCart2"
+        android:layout_width="46.51dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
+    <TextView
+        android:id="@+id/snippet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+    <!-- Bottom Sheet -->
+    <LinearLayout
+        android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="8dp"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="15dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway"
+            android:padding="16dp"
+            android:text="Locate the Service Area!"
+            android:textColor="@color/main_blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/raleway"
+            android:text="Email Address"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/iconLocation2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center|right"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:contentDescription="Location Icon"
+                android:src="@drawable/location" />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="312dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center|left"
+                android:background="@drawable/round_edit_txt"
+                android:fontFamily="@font/raleway"
+                android:hint="Type or Select a location on the Map..."
+                android:textColor="@color/main_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/raleway"
+            android:text="Email Address"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/iconLocation3"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center|right"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:contentDescription="Location Icon"
+                android:src="@drawable/location" />
+
+            <EditText
+                android:id="@+id/et_month"
+                android:layout_width="150dp"
+                android:layout_height="30sp"
+                android:layout_gravity="center|left"
+                android:background="@drawable/round_edit_txt"
+                android:fontFamily="@font/raleway"
+                android:hint="Name of the Month..."
+                android:textColor="@color/main_blue"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_day"
+                android:layout_width="60dp"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/round_edit_txt"
+                android:fontFamily="@font/raleway"
+                android:hint="Day..."
+                android:textColor="@color/main_blue"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/et_year"
+                android:layout_width="80dp"
+                android:layout_height="30sp"
+                android:layout_gravity="center|right"
+                android:background="@drawable/round_edit_txt"
+                android:fontFamily="@font/raleway"
+                android:hint="Year..."
+                android:textColor="@color/main_blue"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="7dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/raleway"
+            android:text="Email Address"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/book_button"
+            android:layout_width="216dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/main_blue"
+            android:text="Book Appointment"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:cornerRadius="20sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
